@@ -11,4 +11,14 @@ router.post("/add-experience", async (req, res)=>{
         res.status(500).json({ error: err.message });
     }
 })
+router.get("/getExperiences", async (req, res)=>{
+    try {
+        const experiences = await Experience.find();
+        res.status(200).json(experiences);
+    } catch (error) {
+        res.status(500).json({message:"Error Fetching Exprencies", error:error.message})
+    }
+})
+
+
 module.exports = router;

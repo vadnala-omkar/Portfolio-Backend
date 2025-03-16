@@ -36,4 +36,15 @@ router.post("/upload", upload.single("file"), async (req, res) => {
     }
 });
 
+router.get("/getCertificate", async (req, res) => {
+    try {
+        const certificates = await Certificate.find();
+        res.status(200).json(certificates)
+    } catch (error) {
+        res.status(500).json({message:"Error Fetching certificates", error:error.message})
+    }
+})
+
+
+
 module.exports = router;
